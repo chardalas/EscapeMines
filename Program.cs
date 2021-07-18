@@ -20,25 +20,33 @@ namespace EscapeMinesChardalasEmmanouil
 			foreach (var gameSettings in gamesSettings)
 			{
 				// you can say that you did some benchmarking and eventually, File.ReadLines was faster.
-				var lines = File.ReadLines(gameSettings);
+				var settings = File.ReadLines(gameSettings);
 
-				Console.WriteLine(lines.First());
-				Console.WriteLine(lines.Skip(1).First());
-				Console.WriteLine(lines.Skip(2).First());
-				Console.WriteLine(lines.Skip(3).First());
-				Console.WriteLine(lines.Skip(4).FirstOrDefault());
+				IBoardGame em = new EscapeMines();
+				//em.Board.Length = 1;
+				// em.Board.Size = 4 5;
+				// em.Mines.Potition = 1,0 1,2 3,4;
+				// em.Exit.Potition = 1,0 1,2 3,4;
+				// em.Turtle.Potition = 1 0 N;
+				em.SetupBoard(settings);
+
+				//em
+				Console.WriteLine(settings.First());
+				Console.WriteLine(settings.Skip(1).First());
+				Console.WriteLine(settings.Skip(2).First());
+				Console.WriteLine(settings.Skip(3).First());
+				Console.WriteLine(settings.Skip(4).FirstOrDefault());
 				Console.WriteLine("\nNew Game Has Started.\n");
-
 				Console.ReadLine();
+
+				em.Play(); // em.Moves = R M L M M R M M M;
+				em.Result();
+				//em.End();
+
 			}
 			Console.ReadKey();
 
-			IBoardGame em = new EscapeMines();
-			
-			em.SetupBoard();
-			em.Play();
-			em.Result();
-			//em.End();
+
 
 			//output
 			// either success or failure

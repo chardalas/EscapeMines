@@ -43,15 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Board\ITile.cs" />
+    <Compile Include="Board\Potision.cs" />
+    <Compile Include="Game\IPawn.cs" />
     <Compile Include="IGameSettingsReader.cs" />
     <Compile Include="GameSettingsReader.cs" />
-    <Compile Include="EscapeMinesBoard.cs" />
-    <Compile Include="EscapeMines.cs" />
-    <Compile Include="IBoardGame.cs" />
-    <Compile Include="IBoard.cs" />
+    <Compile Include="Game\EscapeMinesBoard.cs" />
+    <Compile Include="Game\EscapeMines.cs" />
+    <Compile Include="Game\IBoardGame.cs" />
+    <Compile Include="Board\IBoard.cs" />
+    <Compile Include="Board\Coordinates.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Turtle.cs" />
+    <Compile Include="Board\Tile.cs" />
+    <Compile Include="Game\Turtle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -62,5 +67,6 @@
     <Content Include="EscapeMinesInputs\Game4.txt" />
     <Content Include="EscapeMinesInputs\Game1.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
