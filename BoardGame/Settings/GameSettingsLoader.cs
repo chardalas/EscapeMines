@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace BoardGameChardalasEmmanouil
 {
-	class GameSettingsReader : IGameSettingsReader
+	class GameSettingsLoader : IGameSettingsLoader
 	{
 		private string settingsDirectory;
 		private string currentDirectory;
 
 		public string SettingsDirectory { set => settingsDirectory = value; }
 
-		public GameSettingsReader()
+		public GameSettingsLoader()
 		{
 			currentDirectory = Environment.CurrentDirectory;
 		}

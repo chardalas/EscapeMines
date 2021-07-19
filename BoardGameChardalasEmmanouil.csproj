@@ -47,8 +47,8 @@
     <Compile Include="BoardGame\Board\ITile.cs" />
     <Compile Include="EscapeMines\Mine.cs" />
     <Compile Include="BoardGame\IPawn.cs" />
-    <Compile Include="BoardGame\Settings\IGameSettingsReader.cs" />
-    <Compile Include="BoardGame\Settings\GameSettingsReader.cs" />
+    <Compile Include="BoardGame\Settings\IGameSettingsLoader.cs" />
+    <Compile Include="BoardGame\Settings\GameSettingsLoader.cs" />
     <Compile Include="EscapeMines\EscapeMinesBoard.cs" />
     <Compile Include="EscapeMines\EscapeMines.cs" />
     <Compile Include="BoardGame\IBoardGame.cs" />

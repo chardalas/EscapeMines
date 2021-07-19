@@ -2,7 +2,7 @@
 
 namespace BoardGameChardalasEmmanouil
 {
-    internal interface IBoardGame
+    interface IBoardGame
     {
         IBoard Board { get; }
         List<IPawn> Pawns { get; }

@@ -10,7 +10,7 @@ namespace BoardGameChardalasEmmanouil
         {
             Console.WriteLine("Welcome to the Escape Mines.\n");
 
-            IGameSettingsReader gsr = new GameSettingsReader
+            IGameSettingsLoader gsr = new GameSettingsLoader
             {
                 SettingsDirectory = @"Inputs\"
             };
