@@ -16,8 +16,6 @@ namespace BoardGameChardalasEmmanouil
         {
             this.Tiles = new List<ITile>();
         }
-                
-        public void CreateBoard() { }
 
         public void SetSize() { }
 
