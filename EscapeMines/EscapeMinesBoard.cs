@@ -48,7 +48,7 @@ namespace BoardGameChardalasEmmanouil
 		private void PrintError1(int x, int y)
 		{			
 			Console.WriteLine("The board expands from tiles: (0,0) up to ({0},{1})", Width - 1, Length - 1);
-			Console.WriteLine("The tile with coordinates: ({0},{1}) does not exits. Please amend the input and try again.", x, y);
+			Console.WriteLine("The tile with coordinates: ({0},{1}) does not exist. Please amend the input and try again.", x, y);
 			Console.ReadLine();
 			Environment.Exit(1);
 		}		

@@ -45,8 +45,7 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupMines(string input)
 		{
-			// todo: validate input
-			// todo: what if a mine is out of bounds? Wll always have to be less that the board size.
+			// todo: validate input		
 			foreach (var mine in input.Trim().Split(' '))
 			{
 				int[] points = Array.ConvertAll(mine.Trim().Split(','), int.Parse);
@@ -67,8 +66,7 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupExit(string input)
 		{
-			// todo: validate input
-			// todo: what if a exit is out of bounds? Will always have to be less that the board size.
+			// todo: validate input			
 			int[] points = Array.ConvertAll(input.Trim().Split(' '), int.Parse);
 
 			var tileIndex = Board.GetTileIndex(points[0], points[1]);
@@ -78,8 +76,7 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupTurtle(string input)
 		{
-			// todo: validate input
-			// todo: what if turtle is out of bounds? will always have to be less that the board size.
+			// todo: validate input			
 			var inputArr = input.Trim().Split(' ');
 
 			int[] points = Array.ConvertAll(inputArr.Take(inputArr.Length - 1).ToArray(), int.Parse);
