@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BoardGameChardalasEmmanouil
 {
@@ -17,10 +18,13 @@ namespace BoardGameChardalasEmmanouil
 			this.Pawns = new List<IPawn>();
 		}
 
+		//var tri= Regex.Replace(settings.FirstOrDefault(), @"\s+", "");
 		public void SetupBoard(IEnumerable<string> settings)
 		{
-			CalculateBoardSize(settings.FirstOrDefault());
-			Board.Size = width * length;
+			int[] points = Array.ConvertAll(settings.FirstOrDefault().Trim().Split(' '), int.Parse);
+
+			Board.Width = points[0];
+			Board.Length = points[1];
 			Board.CreateTiles();
 
 			//Board.Tiles.in(AddRange(2, 10);
@@ -30,7 +34,7 @@ namespace BoardGameChardalasEmmanouil
 
 			foreach (var item in Board.Tiles)
 			{
-				Console.WriteLine("Tile:: " + item + "\n");
+				Console.WriteLine("Tile:: " + item + " x:: " + item.Coordinates.x + " y:: " + item.Coordinates.y + "\n");
 				//Console.WriteLine("Tile:: " + item.GetType() + "\n");
 			}
 
@@ -45,22 +49,17 @@ namespace BoardGameChardalasEmmanouil
 			}
 		}
 
-		private void CalculateBoardSize(string input)
+		private void SetMines(string input)
 		{
-			var dimensions = input.Split(' ');
-
-			Int32.TryParse(dimensions[0], out width);
-			Int32.TryParse(dimensions[1], out length);
-		}
-
-		private void SetMines(string mines)
-		{
-			//todo: what if a mine is out of bounds? Wll always have to be less that the board size.
-			foreach (var mine in mines.Trim().Split(' '))
+			// todo: validate input
+			//ntodo: what if a mine is out of bounds? Wll always have to be less that the board size.
+			foreach (var mine in input.Trim().Split(' '))
 			{
 				int[] points = Array.ConvertAll(mine.Trim().Split(','), int.Parse);
 
-				Board.Tiles.Add(new Mine { Coordinates = new Coordinates { x = points[0], y = points[1] } });
+				var tileIndex = Board.Tiles.FindIndex(x => x.Coordinates.x == points[0] && x.Coordinates.y == points[1]);
+
+				Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = points[0], y = points[1] } };
 			}
 
 			var mi = Board.Tiles.OfType<Mine>().Where(x => x.Coordinates.x == 1 && x.Coordinates.y == 1);
@@ -71,22 +70,24 @@ namespace BoardGameChardalasEmmanouil
 			}
 		}
 
-		private void SetExit(string exit)
+		private void SetExit(string input)
 		{
+			// todo: validate input
 			// todo: what if a exit is out of bounds? Will always have to be less that the board size.
-			int[] points = Array.ConvertAll(exit.Trim().Split(' '), int.Parse);
+			int[] points = Array.ConvertAll(input.Trim().Split(' '), int.Parse);
 
 			Board.Tiles.Add(new Exit { Coordinates = new Coordinates { x = points[0], y = points[1] } });
 		}
 
-		private void SetTurtle(string turtle)
+		private void SetTurtle(string input)
 		{
+			// todo: validate input
 			//todo: what if turtle is out of bounds? will always have to be less that the board size.
-			var input = turtle.Trim().Split(' ');
-			
-			int[] points = Array.ConvertAll(input.Take(input.Length - 1).ToArray(), int.Parse);
+			var inputArr = input.Trim().Split(' ');
 
-			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = input[2]});
+			int[] points = Array.ConvertAll(inputArr.Take(inputArr.Length - 1).ToArray(), int.Parse);
+
+			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = inputArr[2] });
 		}
 
 		public void Play() { }
