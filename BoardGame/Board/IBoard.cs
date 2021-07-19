@@ -8,7 +8,8 @@ namespace BoardGameChardalasEmmanouil
 		int Length { get; set; }
 		List<ITile> Tiles { get; set; }
 
-		void CreateTiles();
 		void Print();
+		void CreateTiles();
+		int GetTileIndex(int x, int y);
 	}
 }

@@ -46,18 +46,18 @@ namespace BoardGameChardalasEmmanouil
 		private void SetupMines(string input)
 		{
 			// todo: validate input
-			//ntodo: what if a mine is out of bounds? Wll always have to be less that the board size.
+			// todo: what if a mine is out of bounds? Wll always have to be less that the board size.
 			foreach (var mine in input.Trim().Split(' '))
 			{
 				int[] points = Array.ConvertAll(mine.Trim().Split(','), int.Parse);
 
-				var tileIndex = Board.Tiles.FindIndex(x => x.Coordinates.x == points[0] && x.Coordinates.y == points[1]);
+				var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
 				// plant the mine
 				Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = points[0], y = points[1] } };
 			}
 
-			var mi = Board.Tiles.OfType<Mine>().Where(x => x.Coordinates.x == 1 && x.Coordinates.y == 1);
+			var mi = Board.Tiles.OfType<Mine>().Where(t => t.Coordinates.x == 1 && t.Coordinates.y == 1);
 
 			foreach (var item in mi)
 			{
@@ -71,20 +71,21 @@ namespace BoardGameChardalasEmmanouil
 			// todo: what if a exit is out of bounds? Will always have to be less that the board size.
 			int[] points = Array.ConvertAll(input.Trim().Split(' '), int.Parse);
 
-			var tileIndex = Board.Tiles.FindIndex(x => x.Coordinates.x == points[0] && x.Coordinates.y == points[1]);
-			
-			Board.Tiles[tileIndex] = new Exit { Coordinates = new Coordinates { x = points[0], y = points[1] } };
+			var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
-			//Board.Tiles.Add(new Exit { Coordinates = new Coordinates { x = points[0], y = points[1] } });
+			Board.Tiles[tileIndex] = new Exit { Coordinates = new Coordinates { x = points[0], y = points[1] } };
 		}
 
 		private void SetupTurtle(string input)
 		{
 			// todo: validate input
-			//todo: what if turtle is out of bounds? will always have to be less that the board size.
+			// todo: what if turtle is out of bounds? will always have to be less that the board size.
 			var inputArr = input.Trim().Split(' ');
 
 			int[] points = Array.ConvertAll(inputArr.Take(inputArr.Length - 1).ToArray(), int.Parse);
+			
+			// Make sure that the turtle is put on an existing tile.
+			Board.GetTileIndex(points[0], points[1]);
 
 			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = inputArr[2] });
 		}
