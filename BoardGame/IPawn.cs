@@ -2,7 +2,7 @@
 {
 	interface IPawn
 	{
-		Coordinates Position { get; set; }
+		Coordinates Coordinates { get; set; }
 
 		void Move();
 		void Rotate();

@@ -2,6 +2,6 @@
 {
 	interface ITile
 	{
-		Coordinates Position { get; set; }
+		Coordinates Coordinates { get; set; }
 	}
 }

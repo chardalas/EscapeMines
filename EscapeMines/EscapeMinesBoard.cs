@@ -2,21 +2,26 @@
 
 namespace BoardGameChardalasEmmanouil
 {
-	class EscapeMinesBoard : IBoard
-	{
-		public int Length { get; set; }
-		public int Width { get; set; }
-		public string Size { get; set; }
-		public List<ITile> Tiles { get; set; }
+    class EscapeMinesBoard : IBoard
+    {
+        public int Length { get; set; }
+        public int Width { get; set; }
+        public string Size { get; set; }
+        public string Exit { get; set; }
+        public string Mines { get; set; }
+        public List<ITile> Tiles { get; set; }
 
-		public void SetSize() { }
 
-		void SetMines() { }
-		
-		void SetStartingPoint() { }
-		
-		void SetExitPoint() { }
+        public EscapeMinesBoard()
+        {
+            this.Tiles = new List<ITile>();
+        }
+        public void SetSize() { }
 
-		// check with a collection if you can set a predifiened size
-	}
+        void SetMines() { }
+
+        void SetStartingPoint() { }
+
+        void SetExitPoint() { }
+    }
 }

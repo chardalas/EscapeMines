@@ -1,8 +1,8 @@
 ﻿namespace BoardGameChardalasEmmanouil
 {
-	class Turtle : IPawn, ITile
+	class Turtle : IPawn
 	{
-		public Coordinates Position { get; set; }
+		public Coordinates Coordinates { get; set; }
 
 		public void Move() { }
 		public void Rotate() { }

@@ -26,7 +26,7 @@ namespace BoardGameChardalasEmmanouil
 
                 IBoardGame em = new EscapeMines();
                 //em.Board.Length = 1;
-                // em.Board.Size = 4 5;
+                em.Board.Size = "4 5";
                 // em.Mines.Potition = 1,0 1,2 3,4;
                 // em.Exit.Potition = 1,0 1,2 3,4;
                 // em.Turtle.Potition = 1 0 N;

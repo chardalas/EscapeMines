@@ -1,6 +1,6 @@
 ﻿namespace BoardGameChardalasEmmanouil
 {
-    class Tile : ITile
+    class Exit : ITile
     {
         public Coordinates Coordinates { get; set; }
     }
