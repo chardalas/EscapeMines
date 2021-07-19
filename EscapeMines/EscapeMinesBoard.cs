@@ -1,28 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BoardGameChardalasEmmanouil
 {
-    class EscapeMinesBoard : IBoard
-    {
-        public int Length { get; set; }
-        public int Width { get; set; }
-        public string Size { get; set; }
-        public string Exit { get; set; }
-        public string Mines { get; set; }
-        public List<ITile> Tiles { get; set; }
+	class EscapeMinesBoard : IBoard
+	{
+		private int length;
+		private int width;
+		private int size { get; set; }
+		public int Size { get; set; }
+		public string Exit { get; set; }
+		public string Mines { get; set; }
+		public List<ITile> Tiles { get; set; }
 
+		public EscapeMinesBoard()
+		{
+			this.Tiles = new List<ITile>();
+		}
 
-        public EscapeMinesBoard()
-        {
-            this.Tiles = new List<ITile>();
-        }
+		public void CreateTiles()
+		{
+			for (int i = 0; i < size; i++)
+			{
+				Tiles.Add(new Tile { Coordinates = new Coordinates { x = i, y = i } });
+			}
+		}
 
-        public void SetSize() { }
+		void SetMines() { }
 
-        void SetMines() { }
+		void SetStartingPoint() { }
 
-        void SetStartingPoint() { }
-
-        void SetExitPoint() { }
-    }
+		void SetExitPoint() { }
+	}
 }

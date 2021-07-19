@@ -4,9 +4,9 @@ namespace BoardGameChardalasEmmanouil
 {
 	interface IBoard
 	{
-		string Size { get; set; }
+		int Size { get; set; }
 		List<ITile> Tiles { get; set; }
 
-		void SetSize();
+		void CreateTiles();
 	}
 }
