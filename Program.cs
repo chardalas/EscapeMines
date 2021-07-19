@@ -37,7 +37,7 @@ namespace BoardGameChardalasEmmanouil
 				Console.ReadLine();
 
 				em.Play(); // em.Moves = R M L M M R M M M;
-				em.Result();
+				em.Result();				
 				//em.End();
 
 			}
