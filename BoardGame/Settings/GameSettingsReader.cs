@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace EscapeMinesChardalasEmmanouil
+namespace BoardGameChardalasEmmanouil
 {
 	class GameSettingsReader : IGameSettingsReader
 	{

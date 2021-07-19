@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EscapeMinesChardalasEmmanouil
+namespace BoardGameChardalasEmmanouil
 {
 	class EscapeMines : IBoardGame
 	{

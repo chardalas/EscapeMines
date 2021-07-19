@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EscapeMinesChardalasEmmanouil
+namespace BoardGameChardalasEmmanouil
 {
 	class EscapeMinesBoard : IBoard
 	{

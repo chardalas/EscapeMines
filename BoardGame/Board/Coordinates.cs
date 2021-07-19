@@ -1,4 +1,4 @@
-﻿namespace EscapeMinesChardalasEmmanouil
+﻿namespace BoardGameChardalasEmmanouil
 {
 	class Coordinates
 	{
