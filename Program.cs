@@ -12,7 +12,7 @@ namespace BoardGameChardalasEmmanouil
 
             IGameSettingsReader gsr = new GameSettingsReader
             {
-                SettingsDirectory = @"EscapeMinesInputs\"
+                SettingsDirectory = @"Inputs\"
             };
 
             var gamesSettings = gsr.ReadSettings();

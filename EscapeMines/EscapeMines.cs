@@ -17,9 +17,9 @@ namespace BoardGameChardalasEmmanouil
 		public void SetupBoard(IEnumerable<string> settings)
 		{
 			Board.Size = settings.FirstOrDefault();
-			Board.Tiles.Add(new Mine { Position = new Coordinates { x = 1, y = 2 } });
-			Board.Tiles.Add(new Exit { Position = new Coordinates { x = 1, y = 3 } });
-			Board.Tiles.Add(new Turtle { Position = new Coordinates { x = 1, y = 3 } });
+			//Board.Tiles.Add(new Mine { Position = new Coordinates { x = 1, y = 2 } });
+			//Board.Tiles.Add(new Exit { Position = new Coordinates { x = 1, y = 3 } });
+			//Board.Tiles.Add(new Turtle { Position = new Coordinates { x = 1, y = 3 } });
 
 			// em.Board.Size = 4 5;
 			// em.Mines.Potition = 1,0 1,2 3,4;
