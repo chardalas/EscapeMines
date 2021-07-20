@@ -33,7 +33,6 @@ namespace BoardGameChardalasEmmanouil
             PrintPawns();
         }
 
-
         public void Play()
         {
             var turtle = Pawns[0];
@@ -47,15 +46,21 @@ namespace BoardGameChardalasEmmanouil
                 }
 
                 turtle.Move();
-                
-                //Board.GetTileIndex(turtle.Coordinates.x, turtle.Coordinates.y);
-                
-                // get the next tile from board based on the rotation
-                // check if its a tile, mine, or exit --> if tile, move on, if mine--> game over, if exit --> won and exit
-                // move the turtle -- update its coordinates
 
+                var tileIndex = Board.GetTileIndex(turtle.Coordinates.x, turtle.Coordinates.y);
+
+                if (Board.Tiles[tileIndex].GetType() == typeof(Mine))
+                {
+                    Console.WriteLine("The turtle hit a mine, try again.");
+                    return;
+                }
+
+                if (Board.Tiles[tileIndex].GetType() == typeof(Exit))
+                {
+                    Console.WriteLine("The turtle successfully crossed the minefield!");
+                    return;
+                }
             }
-            //read a series of directions and execute them
         }
 
         public string Result() { return ""; }

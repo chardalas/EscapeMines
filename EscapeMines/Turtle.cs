@@ -11,7 +11,7 @@ namespace BoardGameChardalasEmmanouil
         private string west = "W";
         public Coordinates Coordinates { get; set; }
         public string Orientation { get; set; } // think about making it char type
-        public StringBuilder Directions { get; set; }        
+        public StringBuilder Directions { get; set; }
 
         public Turtle()
         {
@@ -20,33 +20,12 @@ namespace BoardGameChardalasEmmanouil
 
         public void Move()
         {
-            SetOrientation();
-
-            // When the first direction is M, turtle continues straight to the given orientation.
-            if (Orientation == "N")
-            {
-                Coordinates.x -= 1;
-            }
-
-            if (Orientation == "S")
-            {
-                Coordinates.x += 1;
-            }
-
-            if (Orientation == "E")
-            {
-                Coordinates.y += 1;
-            }
-
-            if (Orientation == "W")
-            {
-                Coordinates.y -= 1;
-            }
-            
-            GetPosition();            
+            UpdateOrientation();
+            UpdateCoordinates();
+            PrintCoordinates();
         }
 
-        private void SetOrientation()
+        private void UpdateOrientation()
         {
             for (int i = 0; i < Directions.Length; i++)
             {
@@ -82,7 +61,31 @@ namespace BoardGameChardalasEmmanouil
             Directions.Clear();
         }
 
-        void GetPosition()
+        private void UpdateCoordinates()
+        {
+            // When the first direction is M, turtle continues to the given orientation.
+            if (Orientation == "N")
+            {
+                Coordinates.x -= 1;
+            }
+
+            if (Orientation == "S")
+            {
+                Coordinates.x += 1;
+            }
+
+            if (Orientation == "E")
+            {
+                Coordinates.y += 1;
+            }
+
+            if (Orientation == "W")
+            {
+                Coordinates.y -= 1;
+            }
+        }
+
+        void PrintCoordinates()
         {
             Console.WriteLine("Turtle is heading to: ({0},{1}) {2}", Coordinates.x, Coordinates.y, Orientation);
         }

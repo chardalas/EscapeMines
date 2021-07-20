@@ -2,4 +2,4 @@
 1,1 1,3 3,3  
 2 4  
 1 2 N  
-R M R M L M
+R R M L M M R M M
