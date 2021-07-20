@@ -14,7 +14,7 @@ namespace BoardGameChardalasEmmanouil
 
 		public Coordinates Coordinates { get; set; }
 		public string Orientation { get; set; } // think about making it char type		
-				
+
 		public void Move()
 		{
 			// When the first direction is M, turtle continues to the given orientation.

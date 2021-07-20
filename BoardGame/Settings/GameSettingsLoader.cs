@@ -17,7 +17,7 @@ namespace BoardGameChardalasEmmanouil
 			currentDirectory = Environment.CurrentDirectory;
 		}
 
-		public IEnumerable<string> ReadSettings()
+		public IEnumerable<string> LoadSettings()
 		{
 			string settingsDirectoryFullPath = Path.Combine(Directory.GetParent(currentDirectory).Parent.FullName, settingsDirectory);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -8,46 +9,43 @@ namespace BoardGameChardalasEmmanouil
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Welcome to the Escape Mines.\n");
+			Console.WriteLine("Welcome to the Escape Mines.");
 
 			IGameSettingsLoader gsr = new GameSettingsLoader
 			{
 				SettingsDirectory = @"Inputs\"
 			};
 
-			var gamesSettings = gsr.ReadSettings();
+			var gamesSettings = gsr.LoadSettings();
 
 			// if gamesSettings != null && gamesSettings.Any() { Print"No settings were found."}
 
 			foreach (var gameSettings in gamesSettings)
 			{
+				Console.WriteLine("--------------------");
+				Console.WriteLine("New game is started.");
+				Console.WriteLine("--------------------");
+
 				// you can say that you did some benchmarking and eventually, File.ReadLines was faster.
 				var settings = File.ReadLines(gameSettings);
 
 				IBoardGame em = new EscapeMines();
 
-				em.SetupBoard(settings);
+				em.SetupBoard(settings.Take(4).ToList());
 
-				Console.WriteLine(settings.First());
-				Console.WriteLine(settings.Skip(1).First());
-				Console.WriteLine(settings.Skip(2).First());
-				Console.WriteLine(settings.Skip(3).First());
-				Console.WriteLine(settings.Skip(4).FirstOrDefault());
-				Console.WriteLine("\nNew Game Has Started.\n");
-				Console.ReadLine();
+				var movesSets = settings.Skip(4).Take(settings.Count());
 
-				em.Play(); // em.Moves = R M L M M R M M M;
-				em.Result();				
+				foreach (var movesSet in movesSets)
+				{
+					Console.WriteLine("\nPlaying moves:");
+					em.Play(movesSet);
+				}
+
+				em.Result();
 				//em.End();
-
 			}
 			Console.ReadKey();
-
-
-
-			//output
-			// either success or failure
-			// if the turtle does not reach the exit or doesn't hit a mine.
+			//output			
 		}
 	}
 }

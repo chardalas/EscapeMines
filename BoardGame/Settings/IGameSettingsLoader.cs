@@ -5,6 +5,6 @@ namespace BoardGameChardalasEmmanouil
 	interface IGameSettingsLoader
 	{
 		string SettingsDirectory { set; }
-		IEnumerable<string> ReadSettings();
+		IEnumerable<string> LoadSettings();
 	}
 }
