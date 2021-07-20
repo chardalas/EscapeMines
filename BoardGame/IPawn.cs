@@ -1,11 +1,13 @@
-﻿namespace BoardGameChardalasEmmanouil
-{
-	interface IPawn
-	{
-		Coordinates Coordinates { get; set; }
-		string Orientation { get; set; }
+﻿using System.Text;
 
-		void Move();
-		void Rotate();
-	}
+namespace BoardGameChardalasEmmanouil
+{
+    interface IPawn
+    {
+        Coordinates Coordinates { get; set; }
+        string Orientation { get; set; }
+        StringBuilder Rotation { get; set; }
+
+        void Move();
+    }
 }
