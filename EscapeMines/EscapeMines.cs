@@ -42,7 +42,7 @@ namespace BoardGameChardalasEmmanouil
             {
                 if (direction.Contains("R") || direction.Contains("L"))
                 {
-                    turtle.Rotation.Append(direction);
+                    turtle.Directions.Append(direction);
                     continue;
                 }
 

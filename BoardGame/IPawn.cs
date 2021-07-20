@@ -6,7 +6,7 @@ namespace BoardGameChardalasEmmanouil
     {
         Coordinates Coordinates { get; set; }
         string Orientation { get; set; }
-        StringBuilder Rotation { get; set; }
+        StringBuilder Directions { get; set; }
 
         void Move();
     }

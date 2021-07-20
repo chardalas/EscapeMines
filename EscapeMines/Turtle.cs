@@ -11,11 +11,11 @@ namespace BoardGameChardalasEmmanouil
         private string west = "W";
         public Coordinates Coordinates { get; set; }
         public string Orientation { get; set; } // think about making it char type
-        public StringBuilder Rotation { get; set; }        
+        public StringBuilder Directions { get; set; }        
 
         public Turtle()
         {
-            this.Rotation = new StringBuilder();
+            this.Directions = new StringBuilder();
         }
 
         public void Move()
@@ -48,38 +48,38 @@ namespace BoardGameChardalasEmmanouil
 
         private void SetOrientation()
         {
-            for (int i = 0; i < Rotation.Length; i++)
+            for (int i = 0; i < Directions.Length; i++)
             {
-                if (Orientation == "N" && Rotation[i] == 'R' ||
-                    Orientation == "S" && Rotation[i] == 'L')
+                if (Orientation == "N" && Directions[i] == 'R' ||
+                    Orientation == "S" && Directions[i] == 'L')
                 {
                     Orientation = east;
                     continue;
                 }
 
-                if (Orientation == "N" && Rotation[i] == 'L' ||
-                    Orientation == "S" && Rotation[i] == 'R')
+                if (Orientation == "N" && Directions[i] == 'L' ||
+                    Orientation == "S" && Directions[i] == 'R')
                 {
                     Orientation = west;
                     continue;
                 }
 
-                if (Orientation == "E" && Rotation[i] == 'R' ||
-                    Orientation == "W" && Rotation[i] == 'L')
+                if (Orientation == "E" && Directions[i] == 'R' ||
+                    Orientation == "W" && Directions[i] == 'L')
                 {
                     Orientation = south;
                     continue;
                 }
 
-                if (Orientation == "E" && Rotation[i] == 'L' ||
-                    Orientation == "W" && Rotation[i] == 'R')
+                if (Orientation == "E" && Directions[i] == 'L' ||
+                    Orientation == "W" && Directions[i] == 'R')
                 {
                     Orientation = north;
                     continue;
                 }
             }
 
-            Rotation.Clear();
+            Directions.Clear();
         }
 
         void GetPosition()
