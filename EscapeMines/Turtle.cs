@@ -3,91 +3,71 @@ using System.Text;
 
 namespace BoardGameChardalasEmmanouil
 {
-    class Turtle : IPawn
-    {
-        private string north = "N";
-        private string south = "S";
-        private string east = "E";
-        private string west = "W";
-        public Coordinates Coordinates { get; set; }
-        public string Orientation { get; set; } // think about making it char type
-        public StringBuilder Directions { get; set; }
+	class Turtle : IPawn
+	{
+		private string north = "N";
+		private string south = "S";
+		private string east = "E";
+		private string west = "W";
+		private string right = "R";
+		private string left = "L";
 
-        public Turtle()
-        {
-            this.Directions = new StringBuilder();
-        }
+		public Coordinates Coordinates { get; set; }
+		public string Orientation { get; set; } // think about making it char type		
+				
+		public void Move()
+		{
+			// When the first direction is M, turtle continues to the given orientation.
+			if (Orientation == north)
+			{
+				Coordinates.x -= 1;
+			}
 
-        public void Move()
-        {
-            UpdateOrientation();
-            UpdateCoordinates();
-            PrintCoordinates();
-        }
+			if (Orientation == south)
+			{
+				Coordinates.x += 1;
+			}
 
-        private void UpdateOrientation()
-        {
-            for (int i = 0; i < Directions.Length; i++)
-            {
-                if (Orientation == "N" && Directions[i] == 'R' ||
-                    Orientation == "S" && Directions[i] == 'L')
-                {
-                    Orientation = east;
-                    continue;
-                }
+			if (Orientation == east)
+			{
+				Coordinates.y += 1;
+			}
 
-                if (Orientation == "N" && Directions[i] == 'L' ||
-                    Orientation == "S" && Directions[i] == 'R')
-                {
-                    Orientation = west;
-                    continue;
-                }
+			if (Orientation == west)
+			{
+				Coordinates.y -= 1;
+			}
 
-                if (Orientation == "E" && Directions[i] == 'R' ||
-                    Orientation == "W" && Directions[i] == 'L')
-                {
-                    Orientation = south;
-                    continue;
-                }
+			PrintCoordinates();
+		}
 
-                if (Orientation == "E" && Directions[i] == 'L' ||
-                    Orientation == "W" && Directions[i] == 'R')
-                {
-                    Orientation = north;
-                    continue;
-                }
-            }
+		public void Rotate(string direction)
+		{
+			if (Orientation == north && direction == right ||
+					Orientation == south && direction == left)
+			{
+				Orientation = east;
+			}
+			else if (Orientation == north && direction == left ||
+				Orientation == south && direction == right)
+			{
+				Orientation = west;
+			}
+			else if (Orientation == east && direction == right ||
+				Orientation == west && direction == left)
+			{
+				Orientation = south;
+			}
+			else if (Orientation == east && direction == left ||
+				Orientation == west && direction == right)
+			{
+				Orientation = north;
+			}
+		}
 
-            Directions.Clear();
-        }
-
-        private void UpdateCoordinates()
-        {
-            // When the first direction is M, turtle continues to the given orientation.
-            if (Orientation == "N")
-            {
-                Coordinates.x -= 1;
-            }
-
-            if (Orientation == "S")
-            {
-                Coordinates.x += 1;
-            }
-
-            if (Orientation == "E")
-            {
-                Coordinates.y += 1;
-            }
-
-            if (Orientation == "W")
-            {
-                Coordinates.y -= 1;
-            }
-        }
-
-        void PrintCoordinates()
-        {
-            Console.WriteLine("Turtle is heading to: ({0},{1}) {2}", Coordinates.x, Coordinates.y, Orientation);
-        }
-    }
+		private void PrintCoordinates()
+		{
+			Console.WriteLine("Turtle is heading {0} to tile: ({1},{2})", Orientation, Coordinates.x, Coordinates.y);
+		}
+	}
 }

@@ -29,8 +29,8 @@ namespace BoardGameChardalasEmmanouil
             SetupTurtle(settings.Skip(3).First());
             SetupDirections(settings.Skip(4).First());
             Board.Print();
-            PrintMines();
-            PrintPawns();
+            // PrintMines();
+            // PrintPawns();
         }
 
         public void Play()
@@ -41,7 +41,7 @@ namespace BoardGameChardalasEmmanouil
             {
                 if (direction.Contains("R") || direction.Contains("L"))
                 {
-                    turtle.Directions.Append(direction);
+                    turtle.Rotate(direction);                    
                     continue;
                 }
 
@@ -87,16 +87,9 @@ namespace BoardGameChardalasEmmanouil
 
                 var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
-                // plant mine
+                // The bomb has been planted.
                 Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = points[0], y = points[1] } };
-            }
-
-            var mi = Board.Tiles.OfType<Mine>().Where(t => t.Coordinates.x == 1 && t.Coordinates.y == 1);
-
-            foreach (var item in mi)
-            {
-                Console.WriteLine("Mine position:: (" + item.Coordinates.x + "," + item.Coordinates.y + ")");
-            }
+            }      
         }
 
         private void SetupExit(string input)
