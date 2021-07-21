@@ -5,9 +5,9 @@ namespace BoardGameChardalasEmmanouil
     interface IPawn
     {
         Coordinates Coordinates { get; set; }
-        string Orientation { get; set; }
+        char Orientation { get; set; }
 
         void Move();
-        void Rotate(string direction);
+        void Rotate(char direction);
     }
 }

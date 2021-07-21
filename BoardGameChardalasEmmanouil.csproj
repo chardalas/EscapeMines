@@ -62,12 +62,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <Content Include="Inputs\Game1.txt" />
     <Content Include="Inputs\Game2.txt" />
     <Content Include="Inputs\Game3.txt" />
     <Content Include="Inputs\Game4.txt" />
-    <Content Include="Inputs\Game1.txt" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

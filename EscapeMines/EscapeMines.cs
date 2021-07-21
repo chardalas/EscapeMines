@@ -20,21 +20,13 @@ namespace BoardGameChardalasEmmanouil
 		}
 
 		public void SetupBoard(List<string> settings)
-		{ 
-			var tri = Regex.Replace(settings[0], @"\s+", "");
-			var mines = Regex.IsMatch(settings[1].Trim(), @"[^0-9, ]");
-			var tri2 = Regex.IsMatch(settings[2].Trim(), @"[^0-9 ]");
-			var tri3 = Regex.IsMatch(settings[3], @"\b{3}.+?[^0-9 NSWE]");
-
-			// todo: validate input
-
+		{
 			// Execute settings one after the other.
 			SetupTiles(settings[0]);
-			//SetupMines(mines);
+			SetupMines(settings[1]);
 			SetupExit(settings[2]);
 			SetupTurtle(settings[3]);
-
-			// Board.Print();	
+			Board.Print();
 		}
 
 		public void Play(string movesSet)
@@ -42,9 +34,9 @@ namespace BoardGameChardalasEmmanouil
 			var turtle = Pawns[0];
 			directions = movesSet.Trim().Split(' ');
 
-			foreach (var direction in directions)
+			foreach (var direction in movesSet)
 			{
-				if (direction.Contains("R") || direction.Contains("L"))
+				if (direction.Equals('R') || direction.Equals('L'))
 				{
 					turtle.Rotate(direction);
 					continue;
@@ -95,34 +87,21 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupTiles(string input)
 		{
-			int[] boardDimensions = Array.ConvertAll(input.Trim().Split(' '), int.Parse);
+			int[] boardDimensions = Array.ConvertAll(input.Split(' '), int.Parse);
 
-			Board.Length = boardDimensions[0];
-			Board.Width = boardDimensions[1];
+			Board.Length = boardDimensions[1];
+			Board.Width = boardDimensions[0];
 
 			Board.CreateTiles();
 		}
 
 		private void SetupMines(string input)
 		{
-			var tt = new[] { input };
+			var minesCoordinates = input.Remove(input.Length - 1).Split(' ');
 
-			// todo: validate input		
-			for (int i = 0; i < input.Length; i += 2)
+			foreach (var mineCoordinates in minesCoordinates)
 			{
-				char[] t = input.Skip(i).Take(2).ToArray();
-				char[] A = { '1', '2', '3', '4' };
-
-				//int[] points = Array.ConvertAll(, int.Parse);
-
-				var tileIndex = Board.GetTileIndex((int)t[0], (int)t[1]);
-				Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = t[0], y = t[1] } };
-			}
-
-			foreach (var mine in input.Trim().Split(' '))
-			{
-
-				int[] points = Array.ConvertAll(mine.Trim().Split(','), int.Parse);
+				int[] points = Array.ConvertAll(mineCoordinates.Split(','), int.Parse);
 
 				var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
@@ -133,8 +112,7 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupExit(string input)
 		{
-			// todo: validate input			
-			int[] points = Array.ConvertAll(input.Trim().Split(' '), int.Parse);
+			int[] points = Array.ConvertAll(input.Split(' '), int.Parse);
 
 			var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
@@ -143,43 +121,24 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupTurtle(string input)
 		{
-			startingPoint1 = input;
-			// todo: validate input
-			var startingPoint = input.Trim().Split(' ').ToArray();
-
-			// var i3n = input.Trim().ToCharArray();
-
+			var startingPoint = input.Split(' ');
+			
+			// Leading zeros are dropped upon conversion.
 			int[] points = Array.ConvertAll(startingPoint.Take(startingPoint.Length - 1).ToArray(), int.Parse);
-
+			
 			// Make sure turtle is put on an existing tile.
 			Board.GetTileIndex(points[0], points[1]);
 
-			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = startingPoint[2] });
+			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = Convert.ToChar(startingPoint[2]) });
 		}
 
 		public void ResetTurtle()
 		{
-			var startingPoint = startingPoint1.Trim().Split(' ');
-			int[] points = Array.ConvertAll(startingPoint.Take(startingPoint.Length - 1).ToArray(), int.Parse);
+			int[] points = startingPoint1.Take(startingPoint1.Length - 1).Select(i => int.Parse(i.ToString())).ToArray();
+
 			Pawns[0].Coordinates.x = points[0];
 			Pawns[0].Coordinates.y = points[1];
-			Pawns[0].Orientation = startingPoint[2];
-		}
-
-		private void PrintPawns()
-		{
-			foreach (var item in Pawns)
-			{
-				Console.WriteLine("Pawn:: " + item.Coordinates.x + " " + item.Coordinates.y + " " + item.Orientation + "\n");
-			}
-		}
-
-		private void PrintMines()
-		{
-			foreach (var item in Board.Tiles.OfType<Mine>())
-			{
-				Console.WriteLine("Mine:: " + item.Coordinates.x + " " + item.Coordinates.y + "\n");
-			}
-		}
+			Pawns[0].Orientation = startingPoint1[2];
+		}		
 	}
 }

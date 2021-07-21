@@ -5,15 +5,15 @@ namespace BoardGameChardalasEmmanouil
 {
 	class Turtle : IPawn
 	{
-		private string north = "N";
-		private string south = "S";
-		private string east = "E";
-		private string west = "W";
-		private string right = "R";
-		private string left = "L";
+		private char north = 'N';
+		private char south = 'S';
+		private char east = 'E';
+		private char west = 'W';
+		private char right = 'R';
+		private char left = 'L';
 
 		public Coordinates Coordinates { get; set; }
-		public string Orientation { get; set; } // think about making it char type		
+		public char Orientation { get; set; } // think about making it char type		
 
 		public void Move()
 		{
@@ -41,7 +41,7 @@ namespace BoardGameChardalasEmmanouil
 			PrintCoordinates();
 		}
 
-		public void Rotate(string direction)
+		public void Rotate(char direction)
 		{
 			if (Orientation == north && direction == right ||
 					Orientation == south && direction == left)
