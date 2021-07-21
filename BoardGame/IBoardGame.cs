@@ -6,8 +6,8 @@ namespace BoardGameChardalasEmmanouil
 	{
 		IBoard Board { get; }
 		List<IPawn> Pawns { get; }
+		string Result { get; }
 
-		string Result();
 		void Play(string movesSet);
 		void SetupBoard(List<string> settings);
 	}

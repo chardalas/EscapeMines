@@ -9,9 +9,11 @@ namespace BoardGameChardalasEmmanouil
 	{
 		private string[] directions;
 		private string[] turtlesStartingPoint;
+		private string result;
 
 		public IBoard Board { get; }
 		public List<IPawn> Pawns { get; }
+		public string Result { get { return result; } }
 
 		public EscapeMines()
 		{
@@ -26,12 +28,13 @@ namespace BoardGameChardalasEmmanouil
 			SetupMines(settings[1]);
 			SetupExit(settings[2]);
 			SetupTurtle(settings[3]);
-			Board.Print();
+			//Board.Print();
 		}
 
 		public void Play(string movesSet)
 		{
 			var turtle = Pawns[0];
+
 			directions = movesSet.Trim().Split(' ');
 
 			foreach (var direction in movesSet)
@@ -44,37 +47,11 @@ namespace BoardGameChardalasEmmanouil
 
 				turtle.Move();
 
-				var tileIndex = Board.GetTileIndex(turtle.Coordinates.x, turtle.Coordinates.y);
+				var endOfGame = CalculateMove();
 
-				if (Board.Tiles[tileIndex].GetType() == typeof(Mine))
-				{
-					Console.WriteLine("Mine Hit: The turtle was blown up.");
-					ResetTurtle();
-					return;
-				}
-
-				if (Board.Tiles[tileIndex].GetType() == typeof(Exit))
-				{
-					Console.WriteLine("Success: The turtle crossed the minefield!");
-					ResetTurtle();
-					return;
-				}
+				if (endOfGame) { return; }
 			}
-			Console.WriteLine("Still in danger: The turtle has not crossed the minefield.");
-		}
-
-		public string Result() { return ""; }
-
-		public void PrintGameSettings(List<string> settings)
-		{
-			Console.WriteLine("New Game Has Started.\n");
-			Console.WriteLine("Game Settings:.\n");
-
-			foreach (var setting in settings)
-			{
-				Console.WriteLine("{0}", setting);
-			}
-		}
+		}		
 
 		private void SetupTiles(string input)
 		{
@@ -96,6 +73,8 @@ namespace BoardGameChardalasEmmanouil
 
 				var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
+				Boundaries(tileIndex);
+
 				// The bomb has been planted.
 				Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = points[0], y = points[1] } };
 			}
@@ -107,6 +86,8 @@ namespace BoardGameChardalasEmmanouil
 
 			var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
+			Boundaries(tileIndex);
+
 			Board.Tiles[tileIndex] = new Exit { Coordinates = new Coordinates { x = points[0], y = points[1] } };
 		}
 
@@ -117,19 +98,53 @@ namespace BoardGameChardalasEmmanouil
 			// Leading zeros are dropped upon conversion.
 			int[] points = Array.ConvertAll(startingPoint.Take(startingPoint.Length - 1).ToArray(), int.Parse);
 
-			// Make sure turtle is put on an existing tile.
-			Board.GetTileIndex(points[0], points[1]);
+			Boundaries(Board.GetTileIndex(points[0], points[1]));
 
 			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = Convert.ToChar(startingPoint[2]) });
 		}
+		
+		private bool CalculateMove()
+		{
+			var turtle = Pawns[0];
+			var tileIndex = Board.GetTileIndex(turtle.Coordinates.x, turtle.Coordinates.y);
 
-		public void ResetTurtle()
+			if (tileIndex < 0)
+			{
+				result = "Still in danger: The turtle has not crossed the minefield. :|";
+			}
+			else if (Board.Tiles[tileIndex].GetType() == typeof(Mine))
+			{
+				result = "Mine Hit: The turtle was blown up. :(";
+			}
+			else if (Board.Tiles[tileIndex].GetType() == typeof(Exit))
+			{
+				result = "Success: The turtle crossed the minefield! :)";
+			}
+			else { return false; }
+
+			ResetTurtle();
+
+			return true;
+		}
+		
+		private void ResetTurtle()
 		{
 			int[] points = Array.ConvertAll(turtlesStartingPoint.Take(turtlesStartingPoint.Length - 1).ToArray(), int.Parse);
 
 			Pawns[0].Coordinates.x = points[0];
 			Pawns[0].Coordinates.y = points[1];
 			Pawns[0].Orientation = Convert.ToChar(turtlesStartingPoint[2]);
+		}
+
+		private void Boundaries(int tileIndex)
+		{
+			// Make sure that all tiles are existing ones, otherwise stop immediately.
+			if (tileIndex < 0)
+			{
+				Console.WriteLine("The tile with coordinates: ({0},{1}) does not exist. Please amend the input and try again.", x, y);
+				Console.ReadLine();
+				Environment.Exit(1);
+			}
 		}
 	}
 }

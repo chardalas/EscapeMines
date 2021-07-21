@@ -34,7 +34,7 @@ namespace BoardGameChardalasEmmanouil
 
 				if (settingsNotValid) { Console.ReadLine(); return; }
 
-				Console.WriteLine("\n-------------------- New game is started --------------------\n");
+				Console.Write("\n-------------------- New game is started --------------------\n");
 
 				IBoardGame em = new EscapeMines();
 
@@ -44,11 +44,11 @@ namespace BoardGameChardalasEmmanouil
 
 				foreach (var movesSet in movesSets)
 				{
-					Console.WriteLine("\nPlaying moves:");
+					Console.Write("\nPlaying moves:\n");
 					em.Play(movesSet);
+					Console.Write(em.Result);
+					Console.ReadLine();
 				}
-
-				em.Result();
 			}
 			Console.ReadLine();
 		}
