@@ -8,7 +8,7 @@ namespace BoardGameChardalasEmmanouil
 	class EscapeMines : IBoardGame
 	{
 		private string[] directions;
-		private string startingPoint1;
+		private string[] turtlesStartingPoint;
 
 		public IBoard Board { get; }
 		public List<IPawn> Pawns { get; }
@@ -76,15 +76,6 @@ namespace BoardGameChardalasEmmanouil
 			}
 		}
 
-		private void SetupDirections(List<string> input)
-		{
-			foreach (var item in input)
-			{
-				//directions.Add( item.Trim().Split(' '));
-				//	Console.WriteLine(item);
-			}
-		}
-
 		private void SetupTiles(string input)
 		{
 			int[] boardDimensions = Array.ConvertAll(input.Split(' '), int.Parse);
@@ -121,11 +112,11 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupTurtle(string input)
 		{
-			var startingPoint = input.Split(' ');
-			
+			var startingPoint = turtlesStartingPoint = input.Split(' ');
+
 			// Leading zeros are dropped upon conversion.
 			int[] points = Array.ConvertAll(startingPoint.Take(startingPoint.Length - 1).ToArray(), int.Parse);
-			
+
 			// Make sure turtle is put on an existing tile.
 			Board.GetTileIndex(points[0], points[1]);
 
@@ -134,11 +125,11 @@ namespace BoardGameChardalasEmmanouil
 
 		public void ResetTurtle()
 		{
-			int[] points = startingPoint1.Take(startingPoint1.Length - 1).Select(i => int.Parse(i.ToString())).ToArray();
+			int[] points = Array.ConvertAll(turtlesStartingPoint.Take(turtlesStartingPoint.Length - 1).ToArray(), int.Parse);
 
 			Pawns[0].Coordinates.x = points[0];
 			Pawns[0].Coordinates.y = points[1];
-			Pawns[0].Orientation = startingPoint1[2];
-		}		
+			Pawns[0].Orientation = Convert.ToChar(turtlesStartingPoint[2]);
+		}
 	}
 }

@@ -22,25 +22,19 @@ namespace BoardGameChardalasEmmanouil
 
 			var gamesSettings = ems.Load();
 
-			if (gamesSettings != null && !gamesSettings.Any()) { Console.WriteLine("No file settings were found."); Console.ReadLine(); }
-			
+			if (gamesSettings != null && !gamesSettings.Any()) { Console.WriteLine("No file settings were found."); Console.ReadLine(); return; }
+
 			Console.WriteLine("Welcome to the Escape Mines.");
-			
+
 			foreach (var gameSettings in gamesSettings)
 			{
 				var settings = File.ReadLines(gameSettings);
 
 				var settingsNotValid = ems.Validate(settings.ToList());
 
-				if (settingsNotValid)
-				{
-					Console.ReadKey();
-					return;
-				}
+				if (settingsNotValid) { Console.ReadLine(); return; }
 
-				Console.WriteLine("--------------------");
-				Console.WriteLine("New game is started.");
-				Console.WriteLine("--------------------");
+				Console.WriteLine("\n-------------------- New game is started --------------------\n");
 
 				IBoardGame em = new EscapeMines();
 
@@ -56,7 +50,7 @@ namespace BoardGameChardalasEmmanouil
 
 				em.Result();
 			}
-			Console.ReadKey();
+			Console.ReadLine();
 		}
 	}
 }
