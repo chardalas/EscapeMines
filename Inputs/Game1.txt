@@ -1,7 +1,7 @@
-﻿5 4  
-1,1 1,3 3,3  
+﻿5 4			dfghsdg				
+1,1 1,3 3,3  								dfsdf
 2 4
-0 1 N  
-R M M R M
-R M M M R M M
-L M L M M M
+0 1 W	
+R M M R M hgdrth #234 "fds 's "
+R M M M R M M DHDFHFh 
+11 | sdf\L MDHF  L FH M M MDFH 

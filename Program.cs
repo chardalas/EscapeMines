@@ -11,25 +11,34 @@ namespace BoardGameChardalasEmmanouil
 		{
 			Console.WriteLine("Welcome to the Escape Mines.");
 
-			IGameSettingsLoader gsr = new GameSettingsLoader
+			IGameSettings  ems = new EscapeMinesSettings
 			{
 				SettingsDirectory = @"Inputs\"
 			};
 
-			var gamesSettings = gsr.LoadSettings();
+			var gamesSettings = ems.Load();
 
 			// if gamesSettings != null && gamesSettings.Any() { Print"No settings were found."}
 
 			foreach (var gameSettings in gamesSettings)
 			{
+				var settings = File.ReadLines(gameSettings);
+
+				var settingsNotValid = ems.Validate(settings.ToList());				
+
+				if (settingsNotValid)
+				{
+					Console.ReadKey();
+					return;
+				}
+
 				Console.WriteLine("--------------------");
 				Console.WriteLine("New game is started.");
 				Console.WriteLine("--------------------");
 
-				// you can say that you did some benchmarking and eventually, File.ReadLines was faster.
-				var settings = File.ReadLines(gameSettings);
-
 				IBoardGame em = new EscapeMines();
+				
+				var tt = ems.SanitizedSettings;
 
 				em.SetupBoard(settings.Take(4).ToList());
 
@@ -42,10 +51,8 @@ namespace BoardGameChardalasEmmanouil
 				}
 
 				em.Result();
-				//em.End();
 			}
 			Console.ReadKey();
-			//output			
 		}
 	}
 }

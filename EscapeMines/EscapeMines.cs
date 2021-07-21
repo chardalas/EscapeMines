@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace BoardGameChardalasEmmanouil
 {
@@ -19,17 +20,21 @@ namespace BoardGameChardalasEmmanouil
 		}
 
 		public void SetupBoard(List<string> settings)
-		{
-			// var tri= Regex.Replace(settings.FirstOrDefault(), @"\s+", "");
+		{ 
+			var tri = Regex.Replace(settings[0], @"\s+", "");
+			var mines = Regex.IsMatch(settings[1].Trim(), @"[^0-9, ]");
+			var tri2 = Regex.IsMatch(settings[2].Trim(), @"[^0-9 ]");
+			var tri3 = Regex.IsMatch(settings[3], @"\b{3}.+?[^0-9 NSWE]");
+
 			// todo: validate input
 
 			// Execute settings one after the other.
 			SetupTiles(settings[0]);
-			SetupMines(settings[1]);
+			//SetupMines(mines);
 			SetupExit(settings[2]);
 			SetupTurtle(settings[3]);
 
-			// Board.Print();			
+			// Board.Print();	
 		}
 
 		public void Play(string movesSet)
@@ -100,9 +105,23 @@ namespace BoardGameChardalasEmmanouil
 
 		private void SetupMines(string input)
 		{
+			var tt = new[] { input };
+
 			// todo: validate input		
+			for (int i = 0; i < input.Length; i += 2)
+			{
+				char[] t = input.Skip(i).Take(2).ToArray();
+				char[] A = { '1', '2', '3', '4' };
+
+				//int[] points = Array.ConvertAll(, int.Parse);
+
+				var tileIndex = Board.GetTileIndex((int)t[0], (int)t[1]);
+				Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = t[0], y = t[1] } };
+			}
+
 			foreach (var mine in input.Trim().Split(' '))
 			{
+
 				int[] points = Array.ConvertAll(mine.Trim().Split(','), int.Parse);
 
 				var tileIndex = Board.GetTileIndex(points[0], points[1]);
@@ -126,7 +145,7 @@ namespace BoardGameChardalasEmmanouil
 		{
 			startingPoint1 = input;
 			// todo: validate input
-			var startingPoint = input.Trim().Split(' ');
+			var startingPoint = input.Trim().Split(' ').ToArray();
 
 			// var i3n = input.Trim().ToCharArray();
 
