@@ -13,27 +13,27 @@ namespace BoardGameChardalasEmmanouil
 		private char left = 'L';
 
 		public Coordinates Coordinates { get; set; }
-		public char Orientation { get; set; } // think about making it char type		
+		public char Orientation { get; set; }
 
 		public void Move()
 		{
 			// When the first direction is M, turtle continues to the given orientation.
-			if (Orientation == north)
+			if (Orientation.Equals(north))
 			{
 				Coordinates.x -= 1;
 			}
 
-			if (Orientation == south)
+			if (Orientation.Equals(south))
 			{
 				Coordinates.x += 1;
 			}
 
-			if (Orientation == east)
+			if (Orientation.Equals(east))
 			{
 				Coordinates.y += 1;
 			}
 
-			if (Orientation == west)
+			if (Orientation.Equals(west))
 			{
 				Coordinates.y -= 1;
 			}
@@ -43,23 +43,23 @@ namespace BoardGameChardalasEmmanouil
 
 		public void Rotate(char direction)
 		{
-			if (Orientation == north && direction == right ||
-					Orientation == south && direction == left)
+			if (Orientation.Equals(north) && direction.Equals(right) ||
+					Orientation.Equals(south) && direction.Equals(left))
 			{
 				Orientation = east;
 			}
-			else if (Orientation == north && direction == left ||
-				Orientation == south && direction == right)
+			else if (Orientation.Equals(north) && direction.Equals(left) ||
+				Orientation.Equals(south) && direction.Equals(right))
 			{
 				Orientation = west;
 			}
-			else if (Orientation == east && direction == right ||
-				Orientation == west && direction == left)
+			else if (Orientation.Equals(east) && direction.Equals(right) ||
+				Orientation.Equals(west) && direction.Equals(left))
 			{
 				Orientation = south;
 			}
-			else if (Orientation == east && direction == left ||
-				Orientation == west && direction == right)
+			else if (Orientation.Equals(east) && direction.Equals(left) ||
+				Orientation.Equals(west) && direction.Equals(right))
 			{
 				Orientation = north;
 			}
