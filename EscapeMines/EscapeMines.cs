@@ -51,7 +51,7 @@ namespace BoardGameChardalasEmmanouil
 
 				if (endOfGame) { return; }
 			}
-		}		
+		}
 
 		private void SetupTiles(string input)
 		{
@@ -73,7 +73,7 @@ namespace BoardGameChardalasEmmanouil
 
 				var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
-				Boundaries(tileIndex);
+				Boundaries(tileIndex, points);
 
 				// The bomb has been planted.
 				Board.Tiles[tileIndex] = new Mine { Coordinates = new Coordinates { x = points[0], y = points[1] } };
@@ -86,7 +86,7 @@ namespace BoardGameChardalasEmmanouil
 
 			var tileIndex = Board.GetTileIndex(points[0], points[1]);
 
-			Boundaries(tileIndex);
+			Boundaries(tileIndex, points);
 
 			Board.Tiles[tileIndex] = new Exit { Coordinates = new Coordinates { x = points[0], y = points[1] } };
 		}
@@ -98,11 +98,11 @@ namespace BoardGameChardalasEmmanouil
 			// Leading zeros are dropped upon conversion.
 			int[] points = Array.ConvertAll(startingPoint.Take(startingPoint.Length - 1).ToArray(), int.Parse);
 
-			Boundaries(Board.GetTileIndex(points[0], points[1]));
+			Boundaries(Board.GetTileIndex(points[0], points[1]), points);
 
 			Pawns.Add(new Turtle { Coordinates = new Coordinates { x = points[0], y = points[1] }, Orientation = Convert.ToChar(startingPoint[2]) });
 		}
-		
+
 		private bool CalculateMove()
 		{
 			var turtle = Pawns[0];
@@ -126,7 +126,7 @@ namespace BoardGameChardalasEmmanouil
 
 			return true;
 		}
-		
+
 		private void ResetTurtle()
 		{
 			int[] points = Array.ConvertAll(turtlesStartingPoint.Take(turtlesStartingPoint.Length - 1).ToArray(), int.Parse);
@@ -136,12 +136,12 @@ namespace BoardGameChardalasEmmanouil
 			Pawns[0].Orientation = Convert.ToChar(turtlesStartingPoint[2]);
 		}
 
-		private void Boundaries(int tileIndex)
+		private void Boundaries(int tileIndex, int[] points)
 		{
 			// Make sure that all tiles are existing ones, otherwise stop immediately.
 			if (tileIndex < 0)
 			{
-				Console.WriteLine("The tile with coordinates: ({0},{1}) does not exist. Please amend the input and try again.", x, y);
+				Console.WriteLine("The tile with coordinates: ({0},{1}) does not exist. Please amend the input and try again.", points[0], points[1]);
 				Console.ReadLine();
 				Environment.Exit(1);
 			}
