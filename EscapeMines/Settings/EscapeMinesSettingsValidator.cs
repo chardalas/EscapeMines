@@ -16,24 +16,6 @@ namespace BoardGameChardalasEmmanouil
             SanitizedSettings = new List<string>();
         }
 
-        public bool ValidateNonEmptySettings(List<string> settings)
-        {
-            // If more settings come in, this becomes cumbersome to maintain.
-            if (!settings.Any())
-            {
-                Console.WriteLine("\nInvalid input: No settings were found.\n");
-                return true;
-            }
-            return false;
-
-            //return ValidateNonZeroMatrix(settings[0]) ||
-            //    ValidatePairOfNumbers(settings[0]) ||
-            //    ValidateMines(settings[1]) ||
-            //    ValidatePairOfNumbers(settings[2]) ||
-            //    ValidateStartingPoint(settings[3]) ||
-            //    ValidateMovesSets(settings.Skip(4).Take(settings.Count()));
-        }
-
         public bool ValidateNonZeroMatrix()
         {
             string input = Settings[0];
