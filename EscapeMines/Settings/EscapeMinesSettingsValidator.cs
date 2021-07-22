@@ -21,7 +21,7 @@ namespace BoardGameChardalasEmmanouil
         {
             //ValidatePoint(Settings[0]);
             //string input = Settings[0];
-            Regex boardSize = new Regex(@"^[1-9]+ [1-9]+");
+            Regex boardSize = new Regex(@"^[1-9][0-9]* [1-9][0-9]*");
 
             if (boardSize.IsMatch(input))
             {
@@ -41,27 +41,27 @@ namespace BoardGameChardalasEmmanouil
             //string input = Settings[1];
             Regex mines = new Regex(@"[0-9]+(,[0-9]+)");
 
-            if (string.IsNullOrEmpty(input) || !mines.IsMatch(input))
+            if (mines.IsMatch(input))
             {
-                Console.WriteLine("\nInvalid input: {0}", input);
-                Console.WriteLine("Settings require two numbers separated by comma: 1,2");
+                StringBuilder matches = new StringBuilder();
 
-                return true;
-            }
-
-            StringBuilder matches = new StringBuilder();
-
-            foreach (Match match in mines.Matches(input))
-            {
-                if (match.Length > 0)
+                foreach (Match match in mines.Matches(input))
                 {
-                    matches.Append(match).Append(" ");
+                    if (match.Length > 0)
+                    {
+                        matches.Append(match).Append(" ");
+                    }
                 }
+
+                SanitizedSettings.Add(matches.ToString());
+
+                return false;
             }
 
-            SanitizedSettings.Add(matches.ToString());
+            Console.WriteLine("\nInvalid input: {0}", input);
+            Console.WriteLine("Settings require two numbers separated by comma: 1,2");
 
-            return false;
+            return true;
         }
 
         public bool ValidateExitPoint(string input)
@@ -70,17 +70,17 @@ namespace BoardGameChardalasEmmanouil
             //string input = Settings[2];
             Regex boardSize = new Regex(@"^[0-9]+ [0-9]+");
 
-            if (string.IsNullOrEmpty(input) || !boardSize.IsMatch(input))
+            if (boardSize.IsMatch(input))
             {
-                Console.WriteLine("\nInvalid input: {0}", input);
-                Console.WriteLine("Settings require an input that begins with two numbers separated by space: 1 2");
+                SanitizedSettings.Add(boardSize.Match(input).Value);
 
-                return true;
+                return false;
             }
 
-            SanitizedSettings.Add(boardSize.Match(input).Value);
+            Console.WriteLine("\nInvalid input: {0}", input);
+            Console.WriteLine("Settings require an input that begins with two numbers separated by space: 1 2");
 
-            return false;
+            return true;
         }
 
         public bool ValidateStartingPoint(string input)
@@ -88,17 +88,17 @@ namespace BoardGameChardalasEmmanouil
             //string input = Settings[3];
             Regex startingPoint = new Regex(@"([0-9]+ [0-9]+) [NSEW]");
 
-            if (string.IsNullOrEmpty(input) || !startingPoint.IsMatch(input))
+            if (startingPoint.IsMatch(input))
             {
-                Console.WriteLine("\nInvalid input: {0}", input);
-                Console.WriteLine("Settings require an input that begins with two numbers separated by space followed by a char [NSEW]: 1 2 E");
+                SanitizedSettings.Add(startingPoint.Match(input).Value);
 
-                return true;
+                return false;
             }
 
-            SanitizedSettings.Add(startingPoint.Match(input).Value);
+            Console.WriteLine("\nInvalid input: {0}", input);
+            Console.WriteLine("Settings require an input that begins with two numbers separated by space followed by a char [NSEW]: 1 2 E");
 
-            return false;
+            return true;
         }
 
         public bool ValidateMovesSets(IEnumerable<string> movesSets)
