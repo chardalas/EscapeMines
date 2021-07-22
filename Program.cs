@@ -47,8 +47,7 @@ namespace BoardGameChardalasEmmanouil
 
                 var movesSets = emsv.SanitizedSettings.Skip(4).Take(emsv.SanitizedSettings.Count());
 
-                foreach (
-                    var movesSet in movesSets)
+                foreach (var movesSet in movesSets)
                 {
                     Console.Write("\nPlaying moves:\n");
                     em.Play(movesSet);
