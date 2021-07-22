@@ -35,13 +35,11 @@ namespace BoardGameChardalasEmmanouil
         {
             var turtle = Pawns[0];
 
-            directions = movesSet.Trim().Split(' ');
-
-            foreach (var direction in movesSet)
+            foreach (var move in movesSet)
             {
-                if (direction.Equals('R') || direction.Equals('L'))
+                if (move.Equals('R') || move.Equals('L'))
                 {
-                    turtle.Rotate(direction);
+                    turtle.Rotate(move);
                     continue;
                 }
 
