@@ -2,14 +2,14 @@
 
 namespace BoardGameChardalasEmmanouil
 {
-	interface IBoard
-	{
-		int Width { get; set; }
-		int Length { get; set; }
-		List<ITile> Tiles { get; set; }
+    public interface IBoard
+    {
+        int Width { get; set; }
+        int Length { get; set; }
+        List<ITile> Tiles { get; set; }
 
-		void Print();
-		void CreateTiles();
-		int GetTileIndex(int x, int y);
-	}
+        void Print();
+        void CreateTiles();
+        int GetTileIndex(int x, int y);
+    }
 }

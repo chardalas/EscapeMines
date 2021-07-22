@@ -1,6 +1,6 @@
 ﻿namespace BoardGameChardalasEmmanouil
 {
-    class Mine : ITile
+    public class Mine : ITile
     {
         public Coordinates Coordinates { get; set; }
     }

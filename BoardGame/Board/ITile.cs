@@ -1,7 +1,7 @@
 ﻿namespace BoardGameChardalasEmmanouil
 {
-	interface ITile
-	{
-		Coordinates Coordinates { get; set; }
-	}
+    public interface ITile
+    {
+        Coordinates Coordinates { get; set; }
+    }
 }

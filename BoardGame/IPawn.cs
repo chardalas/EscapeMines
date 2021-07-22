@@ -2,7 +2,7 @@
 
 namespace BoardGameChardalasEmmanouil
 {
-    interface IPawn
+    public interface IPawn
     {
         Coordinates Coordinates { get; set; }
         char Orientation { get; set; }
