@@ -1,5 +1,5 @@
-﻿02 0 46 323 27		what if you have 00 matrix?
-4399 1,1 1,3 *0w 9":3,3 asd as 
+﻿20 46 323 27		what if you have 00 matrix?
+4 1,1 1,3 *0w 9":3,3 asd as 
 2 4 8877 jkhjkh
 1 0 N  Ps
 M R M M M M R M M hgdrth #234 "fds 's "
