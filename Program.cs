@@ -5,7 +5,7 @@ using System.Linq;
 namespace BoardGameChardalasEmmanouil
 {
     class Program
-    {  
+    {
         static void Main(string[] args)
         {
             IGameSettingsLoader ems = new EscapeMinesSettingsLoader
@@ -23,7 +23,7 @@ namespace BoardGameChardalasEmmanouil
             {
                 var settings = File.ReadLines(gameSettings);
 
-                if (!settings.Any()) { Console.Write("\nNo settings were found.\n"); return; }
+                if (settings != null && !settings.Any()) { Console.Write("\nNo settings were found for file: {0}.\n", gameSettings); Console.ReadLine(); return; }
 
                 IEscapeMinesSettingsValidator emsv = new EscapeMinesSettingsValidator
                 {
@@ -37,9 +37,11 @@ namespace BoardGameChardalasEmmanouil
                 emsv.ValidateStartingPoint() ||
                 emsv.ValidateMovesSets())
                 { Console.ReadLine(); return; }
-              
-                Console.Write("\n-------------------- New game is started --------------------\n");
 
+                var gameName = gameSettings.Split('\\');
+                Console.Write("\n------------ New game is started for file: {0} ------------\n", gameName[gameName.Length - 1]);
+
+                // Let the game begin!
                 IBoardGame em = new EscapeMines();
 
                 em.SetupBoard(emsv.SanitizedSettings.Take(4).ToList());
