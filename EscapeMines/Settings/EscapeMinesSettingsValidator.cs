@@ -21,19 +21,19 @@ namespace BoardGameChardalasEmmanouil
         {
             //ValidatePoint(Settings[0]);
             //string input = Settings[0];
-            Regex boardSize = new Regex(@"^[0-9]+ [0-9]+");
+            Regex boardSize = new Regex(@"^[1-9]+ [1-9]+");
 
-            if (string.IsNullOrEmpty(input) || ValidateNonZeroMatrix(input) || !boardSize.IsMatch(input))
+            if (boardSize.IsMatch(input))
             {
-                Console.WriteLine("\nInvalid input: {0}", input);
-                Console.WriteLine("Settings require an input that begins with two numbers, greater than zero and separated by space: 1 2");
+                SanitizedSettings.Add(boardSize.Match(input).Value);
 
-                return true;
+                return false;
             }
 
-            SanitizedSettings.Add(boardSize.Match(input).Value);
+            Console.WriteLine("\nInvalid input: {0}", input);
+            Console.WriteLine("Settings require an input that begins with two numbers, greater than zero and separated by space: 1 2");
 
-            return false;
+            return true;
         }
 
         public bool ValidateMines(string input)
@@ -123,7 +123,7 @@ namespace BoardGameChardalasEmmanouil
         public bool ValidateNonZeroMatrix(string input)
         {
             //            string input = Settings[0];
-            Regex boardSize = new Regex(@"0 0");
+            Regex boardSize = new Regex(@"^0| 0");
 
             if (string.IsNullOrEmpty(input) || boardSize.IsMatch(input))
             {
