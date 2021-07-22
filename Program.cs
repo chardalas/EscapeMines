@@ -5,16 +5,10 @@ using System.Linq;
 namespace BoardGameChardalasEmmanouil
 {
     class Program
-    {
-
-        // ToDo :: For testing:
-        // Test all EscapeMines methods
-        // Test all EscapeMinesBoard methods
-        // Test all EscapeMinesSettings methods		
-
+    {  
         static void Main(string[] args)
         {
-            IGameSettings ems = new EscapeMinesSettings
+            IGameSettingsLoader ems = new EscapeMinesSettingsLoader
             {
                 SettingsDirectory = @"Inputs\"
             };

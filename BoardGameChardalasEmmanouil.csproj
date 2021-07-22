@@ -43,24 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EscapeMines\IEscapeMinesSettingsValidator.cs" />
+    <Compile Include="EscapeMines\Settings\IEscapeMinesSettingsValidator.cs" />
     <Compile Include="BoardGame\Settings\IGameSettingsValidator.cs" />
-    <Compile Include="EscapeMines\EscapeMinesSettingsValidator.cs" />
-    <Compile Include="EscapeMines\Exit.cs" />
+    <Compile Include="EscapeMines\Settings\EscapeMinesSettingsValidator.cs" />
+    <Compile Include="EscapeMines\Game\Exit.cs" />
     <Compile Include="BoardGame\Board\ITile.cs" />
-    <Compile Include="EscapeMines\Mine.cs" />
+    <Compile Include="EscapeMines\Game\Mine.cs" />
     <Compile Include="BoardGame\IPawn.cs" />
-    <Compile Include="BoardGame\Settings\IGameSettings.cs" />
-    <Compile Include="EscapeMines\EscapeMinesSettings.cs" />
-    <Compile Include="EscapeMines\EscapeMinesBoard.cs" />
-    <Compile Include="EscapeMines\EscapeMines.cs" />
+    <Compile Include="BoardGame\Settings\IGameSettingsLoader.cs" />
+    <Compile Include="EscapeMines\Settings\EscapeMinesSettingsLoader.cs" />
+    <Compile Include="EscapeMines\Game\EscapeMinesBoard.cs" />
+    <Compile Include="EscapeMines\Game\EscapeMines.cs" />
     <Compile Include="BoardGame\IBoardGame.cs" />
     <Compile Include="BoardGame\Board\IBoard.cs" />
     <Compile Include="BoardGame\Board\Coordinates.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BoardGame\Board\Tile.cs" />
-    <Compile Include="EscapeMines\Turtle.cs" />
+    <Compile Include="EscapeMines\Game\Turtle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
