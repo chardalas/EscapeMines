@@ -118,14 +118,12 @@ namespace BoardGameChardalasEmmanouil
             {
                 result = "Success: The turtle crossed the minefield! :)";
             }
-            else { return false; }
-
-            ResetTurtle();
+            else { return false; }            
 
             return true;
         }
 
-        private void ResetTurtle()
+        public void ResetPawn()
         {
             int[] points = Array.ConvertAll(turtlesStartingPoint.Take(turtlesStartingPoint.Length - 1).ToArray(), int.Parse);
 

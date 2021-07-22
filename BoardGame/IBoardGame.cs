@@ -2,7 +2,7 @@
 
 namespace BoardGameChardalasEmmanouil
 {
-	interface IBoardGame
+	public interface IBoardGame
 	{
 		IBoard Board { get; }
 		List<IPawn> Pawns { get; }
@@ -10,5 +10,6 @@ namespace BoardGameChardalasEmmanouil
 
 		void Play(string movesSet);
 		void SetupBoard(List<string> settings);
+		void ResetPawn();
 	}
 }

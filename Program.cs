@@ -51,6 +51,7 @@ namespace BoardGameChardalasEmmanouil
                 {
                     Console.Write("\nPlaying moves:\n");
                     em.Play(movesSet);
+                    em.ResetPawn();
                     Console.Write(em.Result);
                     Console.ReadLine();
                 }
