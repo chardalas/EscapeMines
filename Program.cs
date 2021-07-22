@@ -55,7 +55,6 @@ namespace BoardGameChardalasEmmanouil
                     Console.ReadLine();
                 }
             }
-            Console.ReadLine();
         }
     }
 }

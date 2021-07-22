@@ -22,6 +22,7 @@ namespace BoardGameChardalasEmmanouil
 
         public void SetupBoard(List<string> settings)
         {
+            // In case there is a mine on the same tile with the exit point, the latter wins!
             // Execute settings one after the other.
             SetupTiles(settings[0]);
             SetupMines(settings[1]);
