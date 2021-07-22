@@ -17,32 +17,16 @@ namespace BoardGameChardalasEmmanouil
             SanitizedSettings = new List<string>();
         }
 
-        public bool ValidateNonZeroMatrix(string input)
-        {
-//            string input = Settings[0];
-            Regex boardSize = new Regex(@"0 0");
-
-            if (string.IsNullOrEmpty(input) || boardSize.IsMatch(input))
-            {
-                Console.WriteLine("\nInvalid input: {0}", input);
-                Console.WriteLine("Settings require a non zero dimensions matrix.");
-
-                return true;
-            }
-
-            return false;
-        }
-
         public bool ValidateBoardSize(string input)
         {
             //ValidatePoint(Settings[0]);
             //string input = Settings[0];
             Regex boardSize = new Regex(@"^[0-9]+ [0-9]+");
 
-            if (string.IsNullOrEmpty(input) || !boardSize.IsMatch(input))
+            if (string.IsNullOrEmpty(input) || ValidateNonZeroMatrix(input) || !boardSize.IsMatch(input))
             {
                 Console.WriteLine("\nInvalid input: {0}", input);
-                Console.WriteLine("Settings require an input that begins with two numbers separated by space: 1 2");
+                Console.WriteLine("Settings require an input that begins with two numbers, greater than zero and separated by space: 1 2");
 
                 return true;
             }
@@ -131,6 +115,19 @@ namespace BoardGameChardalasEmmanouil
             foreach (var movesSet in movesSets)
             {
                 SanitizedSettings.Add(moves.Replace(movesSet, string.Empty));
+            }
+
+            return false;
+        }
+
+        public bool ValidateNonZeroMatrix(string input)
+        {
+            //            string input = Settings[0];
+            Regex boardSize = new Regex(@"0 0");
+
+            if (string.IsNullOrEmpty(input) || boardSize.IsMatch(input))
+            {
+                return true;
             }
 
             return false;

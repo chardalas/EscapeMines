@@ -30,12 +30,11 @@ namespace BoardGameChardalasEmmanouil
                     Settings = settings.ToList()
                 };
 
-                if (emsv.ValidateNonZeroMatrix() ||
-                emsv.ValidateBoardSize() ||
-                emsv.ValidateMines() ||
-                emsv.ValidateExitPoint() ||
-                emsv.ValidateStartingPoint() ||
-                emsv.ValidateMovesSets())
+                if (emsv.ValidateBoardSize(emsv.Settings[0]) ||
+                emsv.ValidateMines(emsv.Settings[1]) ||
+                emsv.ValidateExitPoint(emsv.Settings[2]) ||
+                emsv.ValidateStartingPoint(emsv.Settings[3]) ||
+                emsv.ValidateMovesSets(emsv.Settings.Skip(4).Take(emsv.Settings.Count())))
                 { Console.ReadLine(); return; }
 
                 var gameName = gameSettings.Split('\\');
@@ -48,7 +47,8 @@ namespace BoardGameChardalasEmmanouil
 
                 var movesSets = emsv.SanitizedSettings.Skip(4).Take(emsv.SanitizedSettings.Count());
 
-                foreach (var movesSet in movesSets)
+                foreach (
+                    var movesSet in movesSets)
                 {
                     Console.Write("\nPlaying moves:\n");
                     em.Play(movesSet);
