@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BoardGameChardalasEmmanouil;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using BoardGameChardalasEmmanouil;
 
 namespace EscapeMinesTests
 {
@@ -19,10 +19,12 @@ namespace EscapeMinesTests
         {
             // Arrange
             EscapeMinesSettings ems = new EscapeMinesSettings();
+
             // Act
+            var valid = ems.Validate(Settings);
 
             // Assert
-
+            Assert.AreEqual(valid, true);
         }
     }
 }

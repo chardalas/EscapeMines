@@ -6,10 +6,9 @@ using System.Text.RegularExpressions;
 namespace BoardGameChardalasEmmanouil
 {
     public class EscapeMines : IBoardGame
-    {
-        private string[] directions;
-        private string[] turtlesStartingPoint;
+    {        
         private string result;
+        private string[] turtlesStartingPoint;
 
         public IBoard Board { get; }
         public List<IPawn> Pawns { get; }
