@@ -22,7 +22,7 @@ namespace BoardGameChardalasEmmanouil
 
 			var gamesSettings = ems.Load();
 
-			if (gamesSettings != null && !gamesSettings.Any()) { Console.WriteLine("No file settings were found."); Console.ReadLine(); return; }
+			if (gamesSettings != null && !gamesSettings.Any()) { Console.Write("No file settings were found."); Console.ReadLine(); return; }
 
 			Console.WriteLine("Welcome to the Escape Mines.");
 

@@ -52,7 +52,7 @@ namespace BoardGameChardalasEmmanouil
 			if (string.IsNullOrEmpty(input) || boardSize.IsMatch(input))
 			{
 				Console.WriteLine("\nInvalid input: {0}", input);
-				Console.WriteLine("Settings requires a non zero dimensions matrix.");
+				Console.WriteLine("Settings require a non zero dimensions matrix.");
 
 				return true;
 			}
@@ -67,7 +67,7 @@ namespace BoardGameChardalasEmmanouil
 			if (string.IsNullOrEmpty(input) || !boardSize.IsMatch(input))
 			{
 				Console.WriteLine("\nInvalid input: {0}", input);
-				Console.WriteLine("Settings requires an input that begins with two numbers separated by space: 1 2");
+				Console.WriteLine("Settings require an input that begins with two numbers separated by space: 1 2");
 
 				return true;
 			}
@@ -84,7 +84,7 @@ namespace BoardGameChardalasEmmanouil
 			if (string.IsNullOrEmpty(input) || !mines.IsMatch(input))
 			{
 				Console.WriteLine("\nInvalid input: {0}", input);
-				Console.WriteLine("Settings requires two numbers separated by comma: 1,2");
+				Console.WriteLine("Settings require two numbers separated by comma: 1,2");
 
 				return true;
 			}
@@ -111,7 +111,7 @@ namespace BoardGameChardalasEmmanouil
 			if (string.IsNullOrEmpty(input) || !startingPoint.IsMatch(input))
 			{
 				Console.WriteLine("\nInvalid input: {0}", input);
-				Console.WriteLine("Settings requires an input that begins with two numbers separated by space followed by a char [NSEW]: 1 2 E");
+				Console.WriteLine("Settings require an input that begins with two numbers separated by space followed by a char [NSEW]: 1 2 E");
 
 				return true;
 			}
