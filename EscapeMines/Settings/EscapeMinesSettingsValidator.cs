@@ -39,7 +39,7 @@ namespace BoardGameChardalasEmmanouil
         public bool ValidateMines(string input)
         {
             //string input = Settings[1];
-            Regex mines = new Regex(@"([0-9]+(,[0-9]+))*");
+            Regex mines = new Regex(@"([0-9]+(,[0-9]+))");
 
             if (string.IsNullOrEmpty(input) || !mines.IsMatch(input))
             {
