@@ -15,7 +15,7 @@ namespace EscapeMinesTests
         }
 
         [TestMethod]
-        public void ValidateWithEmptyList()
+        public void TestValidateWithEmptyList()
         {
             // Arrange
             EscapeMinesSettings ems = new EscapeMinesSettings();
@@ -24,7 +24,24 @@ namespace EscapeMinesTests
             var valid = ems.Validate(Settings);
 
             // Assert
-            Assert.AreEqual(valid, true);
+            Assert.IsTrue(valid);
         }
+
+        [TestMethod]
+        public void TestNonZeroMatrix()
+        {
+            // Arrange
+            EscapeMinesSettings ems = new EscapeMinesSettings();
+
+            //Settings.Add()
+
+            // Act
+            var valid = ems.Validate(Settings);
+
+            // Assert
+            Assert.IsTrue(valid);
+        }
+
+
     }
 }

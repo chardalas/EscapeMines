@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EscapeMines\IEscapeMinesSettingsValidator.cs" />
+    <Compile Include="BoardGame\Settings\IGameSettingsValidator.cs" />
+    <Compile Include="EscapeMines\EscapeMinesSettingsValidator.cs" />
     <Compile Include="EscapeMines\Exit.cs" />
     <Compile Include="BoardGame\Board\ITile.cs" />
     <Compile Include="EscapeMines\Mine.cs" />
