@@ -22,18 +22,15 @@ namespace BoardGameChardalasEmmanouil
             {
                 Coordinates.x -= 1;
             }
-
-            if (Orientation.Equals(south))
+            else if (Orientation.Equals(south))
             {
                 Coordinates.x += 1;
             }
-
-            if (Orientation.Equals(east))
+            else if (Orientation.Equals(east))
             {
                 Coordinates.y += 1;
             }
-
-            if (Orientation.Equals(west))
+            else if (Orientation.Equals(west))
             {
                 Coordinates.y -= 1;
             }
